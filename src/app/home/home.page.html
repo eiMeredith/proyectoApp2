@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="moradilloclaro"> 
+    <ion-title>
+      ¡Hola Mundo!
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>Bienvenid@</ion-card-subtitle>
+    <ion-card-title>Ingresa tu cuenta</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <div class="ion-text-center"><h3>Iniciar sesión</h3></div>
+    <form [formGroup]="formularioLogin">
+      <ion-item>
+        <ion-label position="floating">Nombre de usuario:</ion-label>
+        <ion-input placeholder="Ej: Harry Styles" formControlName="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña:</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+    </form>
+    <br><br>
+    <ion-button (click)="ingresar()" color="moradillo">
+      <ion-icon slot="icon-only" name="log-in-outline"></ion-icon>
+    </ion-button>
+  </ion-card-content>
+</ion-card>
+<br>
+<ion-footer>
+  <ion-toolbar>
+    <i-buttons slot="end">
+      <ion-button [routerLink]= "['/registro']" color="moradillo">
+        ¿No tienes cuenta? Registarte aquí
+      </ion-button>
+    </i-buttons>
+  </ion-toolbar>
+</ion-footer>
+
