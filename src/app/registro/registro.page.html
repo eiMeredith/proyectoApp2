@@ -1,38 +1,48 @@
-<ion-header>
-  <ion-toolbar color="naranjillo">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Registro</ion-title>
+<ion-header [translucent]="true">
+  <ion-toolbar color="naranjillo"> 
+    <ion-title>
+      <p class="bienvenido">Registro</p>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>Ingresa un nombre de usuario y una contraseña</ion-card-subtitle>
-      <ion-card-title>Crea tu cuenta</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <form [formGroup]="formularioRegistro" (keyup.enter)="guardar()">
-        <ion-item>
-          <ion-label position="floating">Nombre de usuario:</ion-label>
-          <ion-input placeholder="Ej: Harry Styles" formControlName="nombre"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Contraseña:</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Confirmar contraseña:</ion-label>
-          <ion-input type="password" formControlName="confirmacionPassword"></ion-input>
-        </ion-item>
-        <br>
-        <ion-button (click)="guardar()" color="naranjilloclaro">
-          Registrarse
-        </ion-button>
-      </form>
-    </ion-card-content>
-  </ion-card>
 
-</ion-content>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title class="titulo">Crea tu cuenta</ion-card-title>
+    <ion-card-subtitle>Ingresa un nombre de usuario y una contraseña</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <form [formGroup]="formularioRegistro" (keyup.enter)="guardar()">
+      <ion-item>
+        <ion-icon name="person-sharp"></ion-icon>
+        <ion-input placeholder="Nombre de usuario:" formControlName="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="mail"></ion-icon>
+        <ion-input placeholder="Correo Electrónico:" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="lock-closed-sharp"></ion-icon>
+        <ion-input type="password" placeholder="Contraseña:" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="lock-closed-sharp"></ion-icon>
+        <ion-input type="password" placeholder="Confirmar contraseña:" formControlName="confirmacionPassword"></ion-input>
+      </ion-item>
+      
+      <br>
+      <ion-button (click)="guardar()" color="naranjilloclaro">
+        Registrarse
+      </ion-button>
+    </form>
+  </ion-card-content>
+</ion-card>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button slot="end" [routerLink]= "['/home']" color="naranjillo">
+      ¿Ya tienes una cuenta? Ingresa aquí
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
