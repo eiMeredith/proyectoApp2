@@ -16,7 +16,7 @@ export class ApiService {
   getUsers ()
   {
     //definición de url para solicitar
-    let url = this.urlAPi + "users/";
+    let url = this.urlAPi + "users";
     this.listado =[]; //limpiar propiedad
     return new Promise((resolve, reject) => {
       this.httpClient.get(url).subscribe((data: []) =>{
