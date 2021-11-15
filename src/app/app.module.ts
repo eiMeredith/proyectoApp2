@@ -6,7 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import {IonicStorageModule} from '@ionic/storage-angular';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 // importar cliente HTML
 import {HttpClientModule} from '@angular/common/http';
