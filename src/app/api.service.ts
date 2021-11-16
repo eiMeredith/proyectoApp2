@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   listado= [];
+  datos : any;
   item : any;
   private urlAPi = 'https://jsonplaceholder.typicode.com/'; //url
   constructor(private httpClient: HttpClient) { }
@@ -37,6 +38,38 @@ export class ApiService {
       this.httpClient.get(url).subscribe((data: any) =>{
         resolve(data);
         this.item = data;
+        },
+        error =>
+        {
+          console.log("Error en la comunicación con el Servidor");
+        });
+      });
+  }
+
+  getPost (id : String) {
+    this.listado =[];
+    this.datos = "";
+    let url = this.urlAPi + 'users/' + id + '/posts';
+    return new Promise((resolve, reject) => {
+        this.httpClient.get(url).subscribe((data: any) =>{
+        data.forEach(item => { this.listado.push(item);})
+        console.table(this.listado);
+        },
+        error =>
+        {
+          console.log("Error en la comunicación con el Servidor");
+        });
+      });
+  }
+
+  getComment (id : String) {
+    this.listado =[];
+    this.datos = "";
+    let url = this.urlAPi + 'posts/' + id + '/comments';
+    return new Promise((resolve, reject) => {
+        this.httpClient.get(url).subscribe((data: any) =>{
+        data.forEach(item => { this.listado.push(item);})
+        console.table(this.listado);
         },
         error =>
         {
