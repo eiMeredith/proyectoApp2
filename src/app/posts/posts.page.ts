@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+
 
 @Component({
   selector: 'app-posts',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./posts.page.scss'],
 })
 export class PostsPage implements OnInit {
-
-  constructor() { }
+  listado =[];
+  datos :any;
+  constructor(private api:ApiService) { }
 
   ngOnInit() {
   }
+
 
 }
