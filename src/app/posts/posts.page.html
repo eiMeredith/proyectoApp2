@@ -1,9 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Listado de Posts</ion-title>
+    <ion-title>Publicaciones</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div *ngIf="posts.length > 0">
+    <ion-list>
+      <div *ngFor="let buscar of posts" [routerLink]="['/',buscar.id]">
+        <ion-item>
+          <ion-label>
+            <h1>{{buscar.title}}</h1>
+            <p>{{buscar.body}}</p>
+          </ion-label>
+        </ion-item>
+      </div>
+    </ion-list>
+  </div>
 </ion-content>
+
+<div>
+  <ion-button>
+    <div (click)="logout()">salir</div>
+  </ion-button>
+</div>

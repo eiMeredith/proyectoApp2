@@ -1,41 +1,109 @@
-import { Component } from '@angular/core';
-import{
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder
-}from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  formularioLogin: FormGroup;
+  listado = [];
 
-  constructor(public fb: FormBuilder,
-    public alertController: AlertController) {
-
-    this.formularioLogin = this.fb.group({
-      'nombre': new FormControl ("", Validators.required),
-      'password': new FormControl ("", Validators.required)
-    })
+  constructor(private api : ApiService,
+              public toastController: ToastController,
+              public router : Router) {
   }
 
-  async ingresar(){
-    var l = this.formularioLogin.value;
-    if(this.formularioLogin.invalid){
-      const alert = await this.alertController.create({
-        header:'Datos incompletos',
-        message: 'Tienes que completar los campos.',
-        buttons: ['OK']
+  ngOnInit(){
+    this.api.getUsers();
+    this.listado = this.api.listado;
+  }
+
+  async ingresar(nombre: HTMLInputElement, clave: HTMLInputElement){
+
+    let listado = this.api.listado;
+    let usuario = nombre.value;
+    let contraseña = clave.value;
+
+    if (usuario.trim().length <= 2 && contraseña.trim().length <= 2){
+      const toast = await this.toastController.create({
+        message: "Vuelva a ingresar los datos",
+        duration: 2000,
+        color: 'danger'
       });
-  
-      await alert.present();
+      toast.present();
+      nombre.value = "";
+      clave.value = "";
       return;
     }
+
+    else if (usuario.trim().length == 0) {
+      const toast = await this.toastController.create({
+        message: "Usuario inválido, ingreselo nuevamente",
+        duration: 2000,
+        color: 'danger'
+      });
+      toast.present();
+      nombre.value = "";
+      return;
+    }
+    
+    else if (usuario.trim().length == 0) {
+      const toast = await this.toastController.create({
+        message: "Contraseña inválido, ingresela nuevamente",
+        duration: 2000,
+        color: 'danger'
+      });
+      toast.present();
+      clave.value = "";
+      return;
+    }
+
+    else if (contraseña != "1234") {
+      const toast = await this.toastController.create({
+        message: "Contraseña inválido, ingresela nuevamente",
+        duration: 2000,
+        color: 'danger'
+      });
+      toast.present();
+      clave.value = "";
+      return;
+    }
+
+    for (let usuarios of this.listado){
+      if (usuarios.username == nombre.value){
+        localStorage.setItem('id',usuarios.id);
+        console.log("Se inició con el usuario:", usuarios.name, "id:",usuarios.id);
+        this.router.navigate(['/home']);
+      }
+    }
+
+    if (usuario != nombre.value) {
+      const toast = await this.toastController.create({
+        message: "El usuario no existe.",
+        duration: 2000,
+        color: 'danger'
+      });
+      toast.present();
+      nombre.value = "";
+      clave.value = "";
+      return;
+    }
+    else {
+      const toast = await this.toastController.create({
+        message: "Usuario ingresado correctamente", 
+        duration: 2000,
+        color: 'success'
+      });
+      toast.present();
+      nombre.value = "";
+      clave.value = "";
+      this.router.navigateByUrl('/posts')
+      return;
+    }
+
   }
 }

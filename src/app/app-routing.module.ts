@@ -18,8 +18,9 @@ const routes: Routes = [
   {
     path: 'posts',
     loadChildren: () => import('./posts/posts.module').then( m => m.PostsPageModule)
-  },  {
-    path: 'comments',
+  },
+  {
+    path: ':id',
     loadChildren: () => import('./comments/comments.module').then( m => m.CommentsPageModule)
   },
 

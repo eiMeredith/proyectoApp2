@@ -13,18 +13,18 @@
   </ion-card-header>
 
   <ion-card-content>
-    <form [formGroup]="formularioLogin">
+    <form>
       <ion-item>
         <ion-icon name="person-sharp"></ion-icon>
-        <ion-input placeholder="Nombre de usuario:" formControlName="nombre"></ion-input>
+        <ion-input placeholder="Nombre de usuario:" #nombre></ion-input>
       </ion-item>
       <ion-item>
         <ion-icon name="lock-closed-sharp"></ion-icon>
-        <ion-input type="password" placeholder="Contraseña:" formControlName="password"></ion-input>
+        <ion-input type="password" placeholder="Contraseña:" #clave></ion-input>
       </ion-item>
     </form>
     <br><br>
-    <ion-button (click)="ingresar()" color="moradillo">
+    <ion-button (click)="ingresar(nombre, clave)" color="moradillo">
       <ion-icon slot="icon-only" name="log-in-outline"></ion-icon>
     </ion-button>
   </ion-card-content>

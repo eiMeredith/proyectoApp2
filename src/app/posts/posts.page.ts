@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
 
@@ -8,12 +9,19 @@ import { ApiService } from '../api.service';
   styleUrls: ['./posts.page.scss'],
 })
 export class PostsPage implements OnInit {
-  listado =[];
-  datos :any;
-  constructor(private api:ApiService) { }
+  posts = [];
+  datos : any;
+  constructor(private api:ApiService,
+              private router : Router) { }
 
   ngOnInit() {
+    this.datos = localStorage.getItem("id")
+    this.api.getPost(this.datos);
+    this.posts = this.api.posts;
   }
 
-
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['/home']);
+  }
 }
