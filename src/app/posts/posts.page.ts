@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -12,9 +13,11 @@ export class PostsPage implements OnInit {
   posts = [];
   datos : any;
   constructor(private api:ApiService,
-              private router : Router) { }
+              private router : Router,
+              public storage:Storage) { }
 
   ngOnInit() {
+    this.storage.clear();
     this.datos = localStorage.getItem("id")
     this.api.getPost(this.datos);
     this.posts = this.api.posts;
@@ -22,6 +25,7 @@ export class PostsPage implements OnInit {
 
   logout(){
     localStorage.clear();
+    this.storage.clear();
     this.router.navigate(['/home']);
   }
 }

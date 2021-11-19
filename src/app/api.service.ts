@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,12 @@ export class ApiService {
   datos : any;
   item : any;
   private urlAPi = 'https://jsonplaceholder.typicode.com/'; 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              public storage: Storage) {
+                this.init();}
+                async init(){
+                  await this.storage.create();
+                }
 
  
   getUsers ()
@@ -34,7 +39,7 @@ export class ApiService {
     // método para obtener solo a 1 usuario
   async getUser(id: String)
   {
-    let url = this.urlAPi + "users/" + id;
+    let url = this.urlAPi + "users/" + id + "/comments";
     return new Promise((resolve, reject) => {
       this.httpClient.get(url).subscribe((data: any) =>{
         resolve(data);
@@ -53,7 +58,6 @@ export class ApiService {
     return new Promise((resolve, reject) => {
         this.httpClient.get(url).subscribe((data: any) =>{
         data.forEach(item => { this.posts.push(item);})
-        console.table(this.listado);
         },
         error =>
         {
@@ -68,11 +72,19 @@ export class ApiService {
     return new Promise((resolve, reject) => {
         this.httpClient.get(url).subscribe((data: []) =>{
         data.forEach(item => { this.comments.push(item);});
-        console.table(this.listado);
+        for (let i = 0; i< this.comments.length; i++)
+        {
+          const elemento = i;
+          this.storage.set("post"+elemento, this.comments[elemento]);
+        }
         },
         error =>
         {
           console.log("Error en la comunicación con el Servidor")
+          for (let i = 0; i < 5; i++){
+            const elemento = i;
+            this.storage.get("post"+String(elemento)).then(item => {this.comments.push(item)});
+          }
         })
       })
   }

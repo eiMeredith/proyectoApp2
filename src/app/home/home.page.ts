@@ -20,6 +20,7 @@ export class HomePage implements OnInit {
   ngOnInit(){
     this.api.getUsers();
     this.listado = this.api.listado;
+    localStorage.clear();
   }
 
   async ingresar(nombre: HTMLInputElement, clave: HTMLInputElement){
@@ -27,20 +28,8 @@ export class HomePage implements OnInit {
     let listado = this.api.listado;
     let usuario = nombre.value;
     let contraseña = clave.value;
-
-    if (usuario.trim().length <= 2 && contraseña.trim().length <= 2){
-      const toast = await this.toastController.create({
-        message: "Vuelva a ingresar los datos",
-        duration: 2000,
-        color: 'danger'
-      });
-      toast.present();
-      nombre.value = "";
-      clave.value = "";
-      return;
-    }
-
-    else if (usuario.trim().length == 0) {
+    
+    if (usuario.trim().length == 0 || usuario.trim().length <= 2) {
       const toast = await this.toastController.create({
         message: "Usuario inválido, ingreselo nuevamente",
         duration: 2000,
@@ -48,17 +37,6 @@ export class HomePage implements OnInit {
       });
       toast.present();
       nombre.value = "";
-      return;
-    }
-    
-    else if (usuario.trim().length == 0) {
-      const toast = await this.toastController.create({
-        message: "Contraseña inválido, ingresela nuevamente",
-        duration: 2000,
-        color: 'danger'
-      });
-      toast.present();
-      clave.value = "";
       return;
     }
 
@@ -95,7 +73,7 @@ export class HomePage implements OnInit {
     else {
       const toast = await this.toastController.create({
         message: "Usuario ingresado correctamente", 
-        duration: 2000,
+        duration: 500,
         color: 'success'
       });
       toast.present();
