@@ -1,40 +1,29 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="moradilloclaro"> 
-    <ion-title>
-      <p class="bienvenido">¡Bienvenid@!</p>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-card>
-  <ion-card-header>
-    <ion-card-title class="titulo">Iniciar sesión</ion-card-title>
-    <ion-card-subtitle>Ingrese sus datos a continuación:</ion-card-subtitle>
-  </ion-card-header>
-
-  <ion-card-content>
-    <form>
-      <ion-item>
-        <ion-icon name="person-sharp"></ion-icon>
-        <ion-input placeholder="Nombre de usuario:" #nombre></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="lock-closed-sharp"></ion-icon>
-        <ion-input type="password" placeholder="Contraseña:" #clave></ion-input>
-      </ion-item>
-    </form>
-    <br><br>
-    <ion-button (click)="ingresar(nombre, clave)" color="moradillo">
-      <ion-icon slot="icon-only" name="log-in-outline"></ion-icon>
-    </ion-button>
-  </ion-card-content>
-</ion-card>
-<br>
-<ion-footer>
-  <ion-toolbar>
-    <ion-button slot="end" [routerLink]= "['/registro']" color="moradillo">
-      ¿No tienes cuenta? Registarte aquí
-    </ion-button>
-  </ion-toolbar>
-</ion-footer>
-
+<ion-content>
+  <div class="login-section ion-padding">
+    <div class="heading ion-padding">
+      <h1>¡Bienvenid@!</h1>
+      <p>Inicie sesión para registrar asistencia</p>
+    </div>
+    <div class="login-form ion-padding">
+      <div class="form-input">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-item>
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input type="text" text-right id="input" #nombre></ion-input>
+        </ion-item>
+      </div>
+      <div class="form-input">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" #clave ></ion-input>
+        </ion-item>
+      </div>
+    </div>
+    <div class="action-buttons ion-padding">
+      <ion-button size="default" color="success" class="login-button" (click)="ingresar(nombre, clave)">Ingresar</ion-button>
+      <p class="forgot">¿Olvidaste tu contraseña?<a routerLink="/recuperar-cuenta">Recupérala</a></p>
+      <ion-button class="signup-button" [routerLink]= "['/registro']" size="block"><ion-text>Registarse</ion-text></ion-button>
+    </div>
+  </div>
+</ion-content>

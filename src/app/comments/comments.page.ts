@@ -12,7 +12,7 @@ export class CommentsPage implements OnInit {
   listado = [];
   posts = [];
   comments = [];
-  comentario;
+  comentario: any;
 
   constructor(private api: ApiService,
               public activateRoute: ActivatedRoute) { }
@@ -23,8 +23,8 @@ export class CommentsPage implements OnInit {
       console.log("Está viendo los comentarios del post:",id);
       this.api.getUser(id);
       this.comentario = id;
+      this.api.getComment(this.comentario);
+      this.comments = this.api.comments;
     })
-    this.api.getComment(this.comentario);
-    this.comments = this.api.comments;
   }
 }

@@ -75,7 +75,7 @@ export class ApiService {
         for (let i = 0; i< this.comments.length; i++)
         {
           const elemento = i;
-          this.storage.set("post"+elemento, this.comments[elemento]);
+          this.storage.set("Comentario " + elemento, this.comments[elemento]);
         }
         },
         error =>
@@ -83,7 +83,7 @@ export class ApiService {
           console.log("Error en la comunicación con el Servidor")
           for (let i = 0; i < 5; i++){
             const elemento = i;
-            this.storage.get("post"+String(elemento)).then(item => {this.comments.push(item)});
+            this.storage.get("post "+String(elemento)).then(item => {this.comments.push(item)});
           }
         })
       })

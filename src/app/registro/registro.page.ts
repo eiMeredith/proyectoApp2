@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import{
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder
-}from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registro',
@@ -13,33 +7,27 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
-  formularioRegistro: FormGroup;
 
-  constructor(public fb: FormBuilder,
-    public alertController: AlertController) {
-    this.formularioRegistro = this.fb.group({
-      'nombre': new FormControl ("", Validators.required),
-      'email' : new FormControl ("", Validators.required),
-      'password': new FormControl ("", Validators.required),
-      'confirmacionPassword': new FormControl ("", Validators.required)
-    })
+  constructor(public toastController: ToastController) {
    }
 
   ngOnInit() {
   }
 
-  async guardar(){
-    var f = this.formularioRegistro.value;
-    if(this.formularioRegistro.invalid){
-      const alert = await this.alertController.create({
-        header:'Datos incompletos',
-        message: 'Tienes que completar los campos.',
-        buttons: ['OK']
-      });
-  
-      await alert.present();
-      return;
+  async registro(nombre: HTMLInputElement){
+    
+    let usuario = nombre.value;
 
+    if (usuario.trim().length == 0 || usuario.trim().length <= 2) {
+      const toast = await this.toastController.create({
+        message: "Usuario inválido, ingreselo nuevamente",
+        duration: 2000,
+        color: 'danger'
+      });
+      toast.present();
+      nombre.value = "";
+      return;
     }
+
   }
 }
