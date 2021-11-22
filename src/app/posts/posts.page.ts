@@ -17,7 +17,6 @@ export class PostsPage implements OnInit {
               public storage:Storage) { }
 
   ngOnInit() {
-    this.storage.clear();
     this.datos = localStorage.getItem("id")
     this.api.getPost(this.datos);
     this.posts = this.api.posts;

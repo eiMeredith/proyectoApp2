@@ -5,28 +5,29 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="posts.length > 0">
-    <ion-list>
-      <div *ngFor="let buscar of posts" [routerLink]="['/', buscar.id]">
-        <ion-item>
-          <div class="container">
-            <p class="encabezado">
-              <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1198/1198343.png" alt="" width="13%" height="100%">
-              <strong>Publicación {{buscar.id}}:</strong> {{buscar.title}}
-            </p>
-            <img class="imgPost" src="https://source.unsplash.com/random" alt=""
-            height="auto" width="100%">
-            <p class="descripcion"><strong>Descripción:</strong> {{buscar.body}}
-            </p>
-          </div>
-        </ion-item>
-      </div>
-    </ion-list>
-  </div>
+    <div class="container1" *ngIf="posts.length > 0">
+      <ion-list>
+        <div *ngFor="let buscar of posts" [routerLink]="['/', buscar.id]">
+          <ion-item>
+            <div class="container2">
+              <p class="encabezado">
+                <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1198/1198343.png" alt="" width="13%" height="100%">
+                <strong>Publicación {{buscar.id}}:</strong> {{buscar.title}}
+              </p>
+              <img class="imgPost" src="https://source.unsplash.com/random" alt=""
+              width="100%">
+              <p class="descripcion"><strong>Descripción:</strong> {{buscar.body}}
+              </p>
+            </div>
+          </ion-item>
+        </div>
+      </ion-list>
+    </div>
 </ion-content>
-
+<center>
 <div>
   <ion-button>
-    <div (click)="logout()">Cerrar Sesión</div>
+    <div size="large" (click)="logout()">Cerrar Sesión</div>
   </ion-button>
 </div>
+</center>

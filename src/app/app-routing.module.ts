@@ -22,13 +22,7 @@ const routes: Routes = [
   {
     path: ':id',
     loadChildren: () => import('./comments/comments.module').then( m => m.CommentsPageModule)
-  },  {
-    path: 'usuario-nuevo',
-    loadChildren: () => import('./usuario-nuevo/usuario-nuevo.module').then( m => m.UsuarioNuevoPageModule)
   },
-
-
-
 ];
 
 @NgModule({

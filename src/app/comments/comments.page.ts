@@ -21,7 +21,6 @@ export class CommentsPage implements OnInit {
     this.activateRoute.paramMap.subscribe(async p => {
       const id = p.get('id');
       console.log("Está viendo los comentarios del post:",id);
-      this.api.getUser(id);
       this.comentario = id;
       this.api.getComment(this.comentario);
       this.comments = this.api.comments;

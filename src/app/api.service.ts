@@ -71,8 +71,8 @@ export class ApiService {
     this.comments = [];
     return new Promise((resolve, reject) => {
         this.httpClient.get(url).subscribe((data: []) =>{
-        data.forEach(item => { this.comments.push(item);});
-        for (let i = 0; i< this.comments.length; i++)
+        data.forEach(item => { this.comments.push(item); });
+        for (let i = 0; i < this.comments.length; i++)
         {
           const elemento = i;
           this.storage.set("Comentario " + elemento, this.comments[elemento]);

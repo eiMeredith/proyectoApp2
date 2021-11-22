@@ -52,7 +52,7 @@ export class HomePage implements OnInit {
     }
 
     for (let usuarios of this.listado){
-      if (usuarios.username == nombre.value){
+      if (usuarios.username == nombre.value && contraseña == "1234"){
         localStorage.setItem('id',usuarios.id);
         console.log("Se inició con el usuario:", usuarios.name, "id:",usuarios.id);
         this.router.navigate(['/home']);

@@ -1,6 +1,11 @@
-.container {
+ion-toolbar {
+    text-align: center;
+}
+
+.container2 {
     margin: 0;
-    width: 97%;
+    width: 100%;
+    max-width: 600px;
     justify-content: center;
 }
 
@@ -25,4 +30,25 @@
 
 .descripcion {
     font-size: 14px;
+}
+
+@media (min-width: 632px) and (max-width: 800px) {
+
+    .container2 {
+        margin: 0 12%;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 1000px) {
+
+    .container2 {
+        margin: 0 20%;
+    }
+}
+
+@media (min-width: 1000px) {
+
+    .container2 {
+        margin: 0 30%;
+    }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
@@ -8,7 +9,8 @@ import { AlertController, ToastController } from '@ionic/angular';
 })
 export class RegistroPage implements OnInit {
 
-  constructor(public toastController: ToastController) {
+  constructor(public toastController: ToastController,
+              public router:Router) {
    }
 
   ngOnInit() {
@@ -27,7 +29,8 @@ export class RegistroPage implements OnInit {
       toast.present();
       nombre.value = "";
       return;
+    } else {
+      this.router.navigateByUrl('/home')
     }
-
   }
 }
