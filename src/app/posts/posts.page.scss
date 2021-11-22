@@ -16,14 +16,6 @@ ion-toolbar {
     padding-bottom: 10px;
 }
 
-.titulo {
-    float: left;
-    margin: auto;
-    padding-left: 10px;
-    padding-bottom: 15px;
-    display: inline;
-}
-
 .encabezado {
     font-size: 15px;
 }
@@ -49,6 +41,7 @@ ion-toolbar {
 @media (min-width: 1000px) {
 
     .container2 {
-        margin: 0 30%;
+        margin: 0 33.33%;
+        max-width: 800px;
     }
 }

@@ -9,11 +9,17 @@
     <ion-list>
       <div *ngFor="let buscar of comments">
         <ion-item>
-          <ion-label>
-            {{buscar.id}}
-            {{buscar.name}}
-            {{buscar.body}}
-          </ion-label>
+          <div class="container2">
+            <p class="encabezado">
+              <img class="icon" src="https://i.ibb.co/VJbzgdn/bubble-chat.png" alt="usuario" width="20%" height="100%">
+            </p>
+            <p>
+              <strong>Usuario {{buscar.id}}:</strong> {{buscar.name}}
+            </p>
+            <p class="descripcion"><strong>Comentario:</strong> {{buscar.body}}
+            </p>
+                
+          </div>
         </ion-item>
       </div>
     </ion-list>
@@ -21,9 +27,9 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
-    <ion-button slot="end" [routerLink]= "['/posts']">
-      Volver
+    <center>
+    <ion-button [routerLink]= "['/posts']">
+      <div size="large">volver</div>
     </ion-button>
-  </ion-toolbar>
+  </center>
 </ion-footer>
